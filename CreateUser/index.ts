@@ -14,6 +14,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
                 status: 400,
                 body: "Please pass a request body"
             }
+            return;
         }
 
         const { email, password, first_name, last_name, vat } = req.body;
@@ -23,6 +24,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
                 status: 400,
                 body: "Please pass a email, password, first_name, last_name"
             }
+            return;
         }
 
         // Verify Email and Vat
@@ -32,6 +34,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
                 status: 400,
                 body: "The email is already registered"
             }
+            return;
         } 
 
         user = await User.findOne({where: {vat}});
@@ -40,6 +43,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
                 status: 400,
                 body: "The vat is already registered"
             }
+            return;
         } 
 
         // Create user object

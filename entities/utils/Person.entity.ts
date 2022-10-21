@@ -3,7 +3,7 @@ import { Entity, BaseEntity, Column, CreateDateColumn, UpdateDateColumn, Primary
 @Entity()
 export class Person extends BaseEntity {
     
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id:number;
 
     @Column()

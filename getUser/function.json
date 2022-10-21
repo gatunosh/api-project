@@ -3,11 +3,11 @@
     {
       "authLevel": "function",
       "type": "httpTrigger",
-      "route": "users",
       "direction": "in",
       "name": "req",
       "methods": [
-        "get"      
+        "get",
+        "post"
       ]
     },
     {
@@ -16,5 +16,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/getUsers/index.js"
+  "scriptFile": "../dist/getUser/index.js"
 }

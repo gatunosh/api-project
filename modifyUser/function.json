@@ -3,11 +3,12 @@
     {
       "authLevel": "function",
       "type": "httpTrigger",
-      "route": "users",
       "direction": "in",
       "name": "req",
+      "route": "user/{id:int}",
       "methods": [
-        "get"      
+        "delete",
+        "put"
       ]
     },
     {
@@ -16,5 +17,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/getUsers/index.js"
+  "scriptFile": "../dist/modifyUser/index.js"
 }
