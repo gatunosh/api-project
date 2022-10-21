@@ -1,16 +1,37 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import { User } from "../entities/User.entity";
+import '../db/dbConnection';
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-    context.log('HTTP trigger function processed a request.');
-    const name = (req.query.name || (req.body && req.body.name));
-    const responseMessage = name
-        ? "Hello, " + name + ". This HTTP triggered function executed successfully."
-        : "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.";
+    
+    try {
 
-    context.res = {
-        // status: 200, /* Defaults to 200 */
-        body: responseMessage
-    };
+        const take: number = Number(req.query.take) || 5;
+        const skip: number = Number(req.query.skip) || 0;
+
+        const [users, count] = await User.findAndCount({
+            where: { is_active: true },
+            order: { first_name: "ASC" },
+            take: take,
+            skip: skip
+        });
+                                        
+
+        context.res = {
+            body: {
+                users,
+                total: count
+            }
+        }
+        
+    } catch (error) {
+        if (error instanceof Error) {
+            context.res = {
+                status: 500,
+                body: error.message
+            } 
+        }
+    }
 
 };
 
