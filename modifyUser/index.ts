@@ -20,7 +20,8 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
 
         if(req.method === 'PUT') {
 
-            // Avoid to send to the user wrong data from the body
+            // Filter the data from the body to not to send wrong data to the user when we
+            // want to update it. 
             const bodyUpdate = _.pick(req.body, ['first_name', 'last_name', 'email', 'vat', 'password', 'is_active'])
 
             if (bodyUpdate.password) {
