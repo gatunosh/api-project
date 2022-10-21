@@ -5,9 +5,9 @@
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
-      "route": "user/{id:int}",
+      "route": "auth",
       "methods": [
-        "get"      
+        "post"
       ]
     },
     {
@@ -16,5 +16,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/getUser/index.js"
+  "scriptFile": "../dist/login/index.js"
 }

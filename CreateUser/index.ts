@@ -5,7 +5,7 @@ import { generateJWT } from "../helpers/jwt";
 import '../db/dbConnection';
 
 
-const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest) {
      
     try {
 
